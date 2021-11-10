@@ -105,7 +105,10 @@ def main():
 
         masks = {}  # for area
         segmentations = collections.defaultdict(list)  # for segmentation
+        iter_i = 1
         for shape in label_file.shapes:
+            print("Shape " + str(iter_i) + "/" + str(len(label_file.shapes)))
+            iter_i = iter_i + 1
             points = shape["points"]
             label = shape["label"]
             group_id = shape.get("group_id")
@@ -143,7 +146,10 @@ def main():
             segmentations[instance].append(points)
         segmentations = dict(segmentations)
 
+        iter_i = 1
         for instance, mask in masks.items():
+            print("Mask " + str(iter_i) + "/" + str(len(masks.items())))
+            iter_i = iter_i + 1
             cls_name, group_id = instance
             if cls_name not in class_name_to_id:
                 continue
